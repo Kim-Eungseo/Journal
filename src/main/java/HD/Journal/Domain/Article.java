@@ -28,8 +28,6 @@ public class Article extends BaseTimeEntity {
 
     private String author;
 
-    
-
     @Builder
     public Article(String title, String content, String author) {
         this.title = title;
