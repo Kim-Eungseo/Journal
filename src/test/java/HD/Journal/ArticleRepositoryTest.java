@@ -1,7 +1,7 @@
 package HD.Journal;
 
-import HD.Journal.Domain.Feeds;
-import HD.Journal.Repository.FeedsRepository;
+import HD.Journal.Domain.Article;
+import HD.Journal.Repository.ArticleRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FeedsRepositoryTest {
+public class ArticleRepositoryTest {
 
     @Autowired
-    FeedsRepository feedsRepository;
+    ArticleRepository articleRepository;
 
     @After
     public void cleanup() {
-        feedsRepository.deleteAll();
+        articleRepository.deleteAll();
     }
 
     @Test
@@ -32,40 +32,40 @@ public class FeedsRepositoryTest {
         String title = "테스트 게시글";
         String content = "테스트 본문";
 
-        feedsRepository.save(Feeds.builder()
+        articleRepository.save(Article.builder()
                 .author("easy")
                 .content(content)
                 .title(title)
                 .build());
 
         //when
-        List<Feeds> feedsList = feedsRepository.findAll();
+        List<Article> articleList = articleRepository.findAll();
 
 
         //then
-        Feeds feeds = feedsList.get(0);
-        assertThat(feeds.getTitle()).isEqualTo(title);
-        assertThat(feeds.getContent()).isEqualTo(content);
+        Article article = articleList.get(0);
+        assertThat(article.getTitle()).isEqualTo(title);
+        assertThat(article.getContent()).isEqualTo(content);
     }
 
     @Test
     public void BaseTimeEntity_등록() {
         //given
         LocalDateTime now = LocalDateTime.of(2021, 7, 18, 0, 0, 0);
-        feedsRepository.save(Feeds.builder()
+        articleRepository.save(Article.builder()
                 .title("title")
                 .content("content")
                 .author("author")
                 .build());
         //when
-        List<Feeds> feedsList = feedsRepository.findAll();
+        List<Article> articleList = articleRepository.findAll();
 
         //then
-        Feeds feeds = feedsList.get(0);
+        Article article = articleList.get(0);
 
-        System.out.println(">>>>>>>>> createDate=" + feeds.getCreatedDate() + ", modifiedDate=" + feeds.getModifiedDate());
+        System.out.println(">>>>>>>>> createDate=" + article.getCreatedDate() + ", modifiedDate=" + article.getModifiedDate());
 
-        assertThat(feeds.getCreatedDate()).isAfter(now);
-        assertThat(feeds.getModifiedDate()).isAfter(now);
+        assertThat(article.getCreatedDate()).isAfter(now);
+        assertThat(article.getModifiedDate()).isAfter(now);
     }
 }

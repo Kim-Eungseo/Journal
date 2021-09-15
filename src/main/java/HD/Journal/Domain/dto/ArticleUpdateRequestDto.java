@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class FeedsUpdateRequestDto {
+public class ArticleUpdateRequestDto {
     private String title;
     private String content;
 
     @Builder
-    public FeedsUpdateRequestDto(String title, String content) {
+    public ArticleUpdateRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
     }

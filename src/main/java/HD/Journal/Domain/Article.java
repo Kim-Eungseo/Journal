@@ -9,11 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Feeds extends BaseTimeEntity {
+public class Article extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,10 @@ public class Feeds extends BaseTimeEntity {
 
     private String author;
 
+    
+
     @Builder
-    public Feeds(String title, String content, String author) {
+    public Article(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;

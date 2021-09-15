@@ -1,26 +1,26 @@
 package HD.Journal.Domain.dto;
 
-import HD.Journal.Domain.Feeds;
+import HD.Journal.Domain.Article;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class FeedsSaveRequestDto {
+public class ArticleSaveRequestDto {
     private String title;
     private String content;
     private String author;
 
     @Builder
-    public FeedsSaveRequestDto(String title, String content, String author) {
+    public ArticleSaveRequestDto(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
     }
 
-    public Feeds toEntity() {
-        return Feeds.builder()
+    public Article toEntity() {
+        return Article.builder()
                 .content(content)
                 .author(author)
                 .title(title)

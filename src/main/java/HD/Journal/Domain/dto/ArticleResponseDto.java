@@ -1,17 +1,17 @@
 package HD.Journal.Domain.dto;
 
-import HD.Journal.Domain.Feeds;
+import HD.Journal.Domain.Article;
 import lombok.Getter;
 
 @Getter
-public class FeedsResponseDto {
+public class ArticleResponseDto {
 
     private Long id;
     private String title;
     private String content;
     private String author;
 
-    public FeedsResponseDto(Feeds entity) {
+    public ArticleResponseDto(Article entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();

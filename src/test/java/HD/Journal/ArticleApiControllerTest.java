@@ -1,9 +1,9 @@
 package HD.Journal;
 
-import HD.Journal.Domain.Feeds;
-import HD.Journal.Domain.dto.FeedsSaveRequestDto;
-import HD.Journal.Domain.dto.FeedsUpdateRequestDto;
-import HD.Journal.Repository.FeedsRepository;
+import HD.Journal.Domain.Article;
+import HD.Journal.Domain.dto.ArticleSaveRequestDto;
+import HD.Journal.Domain.dto.ArticleUpdateRequestDto;
+import HD.Journal.Repository.ArticleRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FeedsApiControllerTest {
+public class ArticleApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -39,7 +39,7 @@ public class FeedsApiControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private FeedsRepository feedsRepository;
+    private ArticleRepository articleRepository;
 
     @Autowired
     private WebApplicationContext context;
@@ -55,7 +55,7 @@ public class FeedsApiControllerTest {
 
     @After
     public void tearDown() throws Exception {
-        feedsRepository.deleteAll();
+        articleRepository.deleteAll();
     }
 
     @Test
@@ -63,7 +63,7 @@ public class FeedsApiControllerTest {
         //given
         String title = "title";
         String content = "content";
-        FeedsSaveRequestDto requestDto = FeedsSaveRequestDto.builder()
+        ArticleSaveRequestDto requestDto = ArticleSaveRequestDto.builder()
                 .title(title)
                 .content(content)
                 .author("author")
@@ -78,7 +78,7 @@ public class FeedsApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        List<Feeds> all = feedsRepository.findAll();
+        List<Article> all = articleRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
     }
@@ -86,7 +86,7 @@ public class FeedsApiControllerTest {
     @Test
     public void Posts_수정된다() throws Exception {
         //given
-        Feeds savedPosts = feedsRepository.save(Feeds.builder()
+        Article savedPosts = articleRepository.save(Article.builder()
                 .title("title")
                 .content("content")
                 .author("author")
@@ -96,7 +96,7 @@ public class FeedsApiControllerTest {
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
-        FeedsUpdateRequestDto requestDto = FeedsUpdateRequestDto.builder()
+        ArticleUpdateRequestDto requestDto = ArticleUpdateRequestDto.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
                 .build();
@@ -111,7 +111,7 @@ public class FeedsApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        List<Feeds> all = feedsRepository.findAll();
+        List<Article> all = articleRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
     }

@@ -1,18 +1,18 @@
 package HD.Journal.Domain.dto;
 
-import HD.Journal.Domain.Feeds;
+import HD.Journal.Domain.Article;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class FeedsListResponseDto {
+public class ArticleListResponseDto {
     private Long id;
     private String title;
     private String author;
     private LocalDateTime modifiedDate;
 
-    public FeedsListResponseDto(Feeds entity) {
+    public ArticleListResponseDto(Article entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
