@@ -11,12 +11,15 @@ public class ArticleSaveRequestDto {
     private String title;
     private String content;
     private String author;
+    private String tag;
 
     @Builder
-    public ArticleSaveRequestDto(String title, String content, String author) {
+    public ArticleSaveRequestDto(String title, String content, String author, String tag) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.tag = tag;
+
     }
 
     public Article toEntity() {
@@ -24,6 +27,7 @@ public class ArticleSaveRequestDto {
                 .content(content)
                 .author(author)
                 .title(title)
+                .tag(tag)
                 .build();
     }
 

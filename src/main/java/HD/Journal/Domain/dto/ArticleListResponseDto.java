@@ -11,11 +11,13 @@ public class ArticleListResponseDto {
     private String title;
     private String author;
     private LocalDateTime modifiedDate;
+    private String tag;
 
     public ArticleListResponseDto(Article entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
         this.modifiedDate = entity.getModifiedDate();
+        this.tag = entity.getTag();
     }
 }

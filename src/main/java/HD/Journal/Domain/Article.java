@@ -28,11 +28,14 @@ public class Article extends BaseTimeEntity {
 
     private String author;
 
+    private String tag;
+
     @Builder
-    public Article(String title, String content, String author) {
+    public Article(String title, String content, String author, String tag) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.tag = tag;
     }
 
     public void update(String title, String content) {

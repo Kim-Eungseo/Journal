@@ -14,10 +14,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     List<Article> findByAuthorAndTitle(String author, String title);
 
-    // select * from FEEDS where author = '응서' and title = 'veryUniv';
-
     List<Article> findByCreatedDateBefore(LocalDateTime createdDate);
-
 
     List<Article> findByAuthorAndTitleOrderByAuthorDesc(String author, String title);
 
