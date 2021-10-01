@@ -10,11 +10,12 @@ import java.util.ArrayList;
 @Getter
 public class CrawledDto {
     private String title;
+    private String url;
     private ArrayList<ImageDto> imageUrls;
     private ArrayList<String> texts;
 
     @Builder
-    public CrawledDto(String title, ArrayList<ImageDto> imageUrls, ArrayList<String> texts) {
+    public CrawledDto(String title, String url, ArrayList<ImageDto> imageUrls, ArrayList<String> texts) {
         this.title = title;
         this.imageUrls = imageUrls;
         this.texts = texts;
