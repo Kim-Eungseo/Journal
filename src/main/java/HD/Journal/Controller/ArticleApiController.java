@@ -26,7 +26,6 @@ public class ArticleApiController {
 
     @PostMapping("/api/v1/posts")
     public Long save(@RequestBody ArticleSaveRequestDto requestDto) {
-        // {title: abc, content: 밥을 맛나게 먹어따, author: 나}
         return articleService.save(requestDto);
     }
 
