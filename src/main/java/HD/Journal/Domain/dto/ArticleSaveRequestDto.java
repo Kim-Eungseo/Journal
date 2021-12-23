@@ -9,25 +9,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArticleSaveRequestDto {
     private String title;
-    private String content;
+    private String description;
     private String author;
-    private String tag;
 
     @Builder
-    public ArticleSaveRequestDto(String title, String content, String author, String tag) {
+    public ArticleSaveRequestDto(String title, String description, String author) {
         this.title = title;
-        this.content = content;
+        this.description = description;
         this.author = author;
-        this.tag = tag;
 
     }
 
     public Article toEntity() {
         return Article.builder()
-                .content(content)
+                .description(description)
                 .author(author)
                 .title(title)
-                .tag(tag)
                 .build();
     }
 

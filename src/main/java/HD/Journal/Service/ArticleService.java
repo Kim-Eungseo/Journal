@@ -1,7 +1,6 @@
 package HD.Journal.Service;
 
 import HD.Journal.Domain.Article;
-import HD.Journal.Domain.dto.ArticleListResponseDto;
 import HD.Journal.Domain.dto.ArticleResponseDto;
 import HD.Journal.Domain.dto.ArticleSaveRequestDto;
 import HD.Journal.Domain.dto.ArticleUpdateRequestDto;
@@ -29,7 +28,7 @@ public class ArticleService {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
-        article.update(requestDto.getTitle(), requestDto.getContent());
+        article.update(requestDto.getTitle(), requestDto.getAuthor(), requestDto.getDescription());
 
         return id;
     }
@@ -46,14 +45,13 @@ public class ArticleService {
     public ArticleResponseDto findById(Long id) {
         Article entity = articleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-
         return new ArticleResponseDto(entity);
     }
 
-    @Transactional
-    public List<ArticleListResponseDto> findAllDesc() {
-        return articleRepository.findAllDesc().stream()
-                .map(ArticleListResponseDto::new)
-                .collect(Collectors.toList());
-    }
+//    @Transactional
+//    public List<ArticleListResponseDto> findAllDesc() {
+//        return articleRepository.findAllDesc().stream()
+//                .map(ArticleListResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
 }

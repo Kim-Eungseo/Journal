@@ -22,7 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,60 +59,27 @@ public class ArticleApiControllerTest {
     }
 
     @Test
-    public void Posts_등록된다() throws Exception {
-        //given
-        String title = "title";
-        String content = "content";
-        ArticleSaveRequestDto requestDto = ArticleSaveRequestDto.builder()
-                .title(title)
-                .content(content)
-                .author("author")
-                .build();
-
-        String url = "http://localhost:" + port + "/api/v1/posts";
-
-        //when
-        mvc.perform(post(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
-
-        //then
-        List<Article> all = articleRepository.findAll();
-        assertThat(all.get(0).getTitle()).isEqualTo(title);
-        assertThat(all.get(0).getContent()).isEqualTo(content);
-    }
-
-    @Test
-    public void Posts_수정된다() throws Exception {
-        //given
-        Article savedPosts = articleRepository.save(Article.builder()
-                .title("title")
-                .content("content")
-                .author("author")
-                .build());
-
-        Long updateId = savedPosts.getId();
-        String expectedTitle = "title2";
-        String expectedContent = "content2";
-
-        ArticleUpdateRequestDto requestDto = ArticleUpdateRequestDto.builder()
-                .title(expectedTitle)
-                .content(expectedContent)
-                .build();
-
-        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
-
-        //when
-        mvc.perform(put(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                //{title: title2, content: content2}
-                .andExpect(status().isOk());
-
-        //then
-        List<Article> all = articleRepository.findAll();
-        assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
-        assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
+    public void description_get() throws Exception {
+//        //given
+//        String title = "title";
+//        String content = "content";
+//        ArticleSaveRequestDto requestDto = ArticleSaveRequestDto.builder()
+//                .title(title)
+//                .description(content)
+//                .author("author")
+//                .build();
+//
+//        String url = "http://localhost:" + port + "/api/v1/article/1";
+//
+//        //when
+//        mvc.perform(get(url)
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(new ObjectMapper().writeValueAsString(requestDto)))
+//                .andExpect(status().isOk());
+//
+//        //then
+//        List<Article> all = articleRepository.findAll();
+//        assertThat(all.get(0).getTitle()).isEqualTo(title);
+//        assertThat(all.get(0).getDescription()).isEqualTo(content);
     }
 }

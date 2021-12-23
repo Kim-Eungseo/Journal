@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Getter
@@ -23,24 +24,28 @@ public class Article extends BaseTimeEntity {
     @Column(length = 500, nullable = false) //VARCHAR(500)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false) //TEXT
-    private String content;
+    @Column(columnDefinition = "MEDIUM TEXT", nullable = false) //TEXT
+    private String description;
 
     private String author;
 
-    private String tag;
+    private String blogName;
+
+    private LocalDateTime pubDate;
 
     @Builder
-    public Article(String title, String content, String author, String tag) {
+    public Article(String title, String description, String author, String blogName, LocalDateTime pubDate) {
         this.title = title;
-        this.content = content;
+        this.description = description;
         this.author = author;
-        this.tag = tag;
+        this.blogName = blogName;
+        this.pubDate = pubDate;
     }
 
-    public void update(String title, String content) {
+    public void update(String title, String author, String description) {
         this.title = title;
-        this.content = content;
+        this.author = author;
+        this.description = description;
     }
 }
 

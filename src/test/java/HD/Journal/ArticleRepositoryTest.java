@@ -34,7 +34,7 @@ public class ArticleRepositoryTest {
 
         articleRepository.save(Article.builder()
                 .author("easy")
-                .content(content)
+                .description(content)
                 .title(title)
                 .build());
 
@@ -45,7 +45,7 @@ public class ArticleRepositoryTest {
         //then
         Article article = articleList.get(0);
         assertThat(article.getTitle()).isEqualTo(title);
-        assertThat(article.getContent()).isEqualTo(content);
+        assertThat(article.getDescription()).isEqualTo(content);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class ArticleRepositoryTest {
         LocalDateTime now = LocalDateTime.of(2021, 7, 18, 0, 0, 0);
         articleRepository.save(Article.builder()
                 .title("title")
-                .content("content")
+                .description("content")
                 .author("author")
                 .build());
         //when
@@ -63,9 +63,9 @@ public class ArticleRepositoryTest {
         //then
         Article article = articleList.get(0);
 
-        System.out.println(">>>>>>>>> createDate=" + article.getCreatedDate() + ", modifiedDate=" + article.getModifiedDate());
+        System.out.println(">>>>>>>>> createDate=" + article.getIsCreated() + ", modifiedDate=" + article.getIsModified());
 
-        assertThat(article.getCreatedDate()).isAfter(now);
-        assertThat(article.getModifiedDate()).isAfter(now);
+        assertThat(article.getIsCreated()).isAfter(now);
+        assertThat(article.getIsModified()).isAfter(now);
     }
 }

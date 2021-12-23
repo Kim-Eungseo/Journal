@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArticleUpdateRequestDto {
     private String title;
-    private String content;
+    private String author;
+    private String description;
     private String tag;
 
     @Builder
-    public ArticleUpdateRequestDto(String title, String content, String tag) {
+    public ArticleUpdateRequestDto(String title, String author, String description, String tag) {
         this.title = title;
-        this.content = content;
+        this.author = author;
+        this.description = description;
         this.tag = tag;
     }
 }
